@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chloe Chan — Portfolio</title>
+<style>
+  :root {
+    --lime: #d8f24a;
+    --coral: #ff5b4a;
+    --indigo: #1d1b4d;
+    --paper: #fffbf2;
+    --ink: #14122a;
+    --muted: #5a5870;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  /* Header */
+  header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+  header .logo { display: flex; align-items: center; gap: 12px; }
+  header .logo img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ink); }
+  header .logo .name { font-weight: 700; font-size: 18px; line-height: 1.1; }
+  header .logo .name small { display: block; font-weight: 500; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  header nav { display: flex; gap: 24px; font-size: 14px; font-weight: 500; }
+  header nav a { position: relative; }
+  header nav a:hover { color: var(--coral); }
+
+  /* Hero */
+  .hero { padding: 56px 0 64px; position: relative; display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+  .hero .tag { display: inline-block; background: var(--lime); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 28px; transform: rotate(-2deg); }
+  .hero h1 { font-size: clamp(40px, 6.5vw, 88px); font-weight: 800; line-height: 0.95; letter-spacing: -2.5px; }
+  .hero h1 .highlight { background: var(--coral); color: white; padding: 0 8px; display: inline-block; transform: rotate(-1deg); }
+  .hero h1 .underline { background: linear-gradient(transparent 60%, var(--lime) 60%); padding: 0 4px; }
+  .hero .sub { margin-top: 24px; font-size: 18px; max-width: 580px; color: var(--muted); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .pill-row span { background: var(--indigo); color: var(--paper); padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 500; }
+
+  /* Photo stack */
+  .photo-wrap { position: relative; aspect-ratio: 1 / 1; max-width: 380px; margin-left: auto; }
+  .photo-wrap .photo-frame { position: absolute; inset: 0; border-radius: 32px; transform: rotate(4deg); background: var(--coral); }
+  .photo-wrap .photo-frame.lime { transform: rotate(-4deg) translate(20px, 20px); background: var(--lime); z-index: -1; }
+  .photo-wrap img { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 32px; border: 3px solid var(--ink); transform: rotate(-2deg); transition: transform 0.3s; }
+  .photo-wrap img:hover { transform: rotate(0deg) scale(1.02); }
+  .photo-wrap .sticker { position: absolute; background: var(--indigo); color: var(--paper); padding: 10px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; z-index: 2; }
+  .photo-wrap .sticker.top { top: -16px; right: -24px; transform: rotate(8deg); background: var(--coral); }
+  .photo-wrap .sticker.bottom { bottom: -12px; left: -28px; transform: rotate(-6deg); }
+
+  /* Marquee */
+  .marquee { background: var(--indigo); color: var(--lime); padding: 18px 0; overflow: hidden; margin: 32px 0; }
+  .marquee-inner { display: flex; gap: 48px; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; animation: scroll 24s linear infinite; }
+  .marquee-inner span::after { content: " ★ "; color: var(--coral); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Stats row */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 64px 0; border: 2px solid var(--ink); border-radius: 24px; overflow: hidden; }
+  .stat { padding: 32px 24px; border-right: 2px solid var(--ink); }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-size: 44px; font-weight: 800; letter-spacing: -1px; }
+  .stat .num.coral { color: var(--coral); }
+  .stat .num.lime { background: var(--lime); padding: 0 6px; display: inline-block; }
+  .stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 8px; }
+
+  /* Section heading */
+  .sec-title { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+  .sec-title h2 { font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -1.5px; }
+  .sec-title .num { background: var(--indigo); color: var(--paper); font-size: 14px; padding: 6px 12px; border-radius: 999px; font-weight: 700; }
+  .sec-title .desc { margin-left: auto; color: var(--muted); font-size: 15px; max-width: 320px; text-align: right; }
+
+  section { padding: 56px 0; }
+
+  /* Experience cards */
+  .cards { display: grid; gap: 24px; }
+  .card { border: 2px solid var(--ink); border-radius: 20px; padding: 32px; background: white; transition: transform 0.2s; }
+  .card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--ink); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+  .card-top h3 { font-size: 24px; font-weight: 700; }
+  .card-top .date { background: var(--lime); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .card .role { color: var(--coral); font-weight: 600; font-size: 14px; margin-bottom: 14px; }
+  .card ul { padding-left: 20px; }
+  .card ul li { margin-bottom: 6px; font-size: 15px; }
+
+  /* Project cards */
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .project { padding: 28px; border-radius: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; }
+  .project.coral { background: var(--coral); color: white; }
+  .project.lime { background: var(--lime); }
+  .project.indigo { background: var(--indigo); color: white; }
+  .project h3 { font-size: 22px; font-weight: 700; line-height: 1.2; }
+  .project .year { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }
+  .project p { font-size: 14px; margin-top: 12px; opacity: 0.9; }
+
+  /* Skills grid - colorful pills */
+  .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-group { padding: 28px; border-radius: 20px; background: white; border: 2px solid var(--ink); }
+  .skill-group h4 { font-size: 18px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .skill-group .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .skill-group .dot.c { background: var(--coral); }
+  .skill-group .dot.l { background: var(--lime); }
+  .skill-group .dot.i { background: var(--indigo); }
+  .skill-group ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-group ul li { background: var(--paper); border: 1px solid var(--ink); padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; }
+
+  /* Credentials bar */
+  .creds { background: var(--indigo); color: var(--paper); padding: 48px; border-radius: 24px; margin: 48px 0; }
+  .creds h2 { color: var(--lime); margin-bottom: 24px; font-size: 28px; }
+  .creds .row { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.15); display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; }
+  .creds .row:last-child { border-bottom: none; }
+  .creds .label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--coral); font-weight: 700; }
+  .creds .value { font-size: 15px; }
+
+  /* Contact */
+  .contact-card { background: var(--lime); padding: 56px; border-radius: 24px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .contact-card .text { text-align: left; }
+  .contact-card h2 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px; }
+  .contact-card p { font-size: 17px; max-width: 520px; margin-bottom: 24px; }
+  .contact-card .links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .contact-card .links a { background: var(--ink); color: var(--paper); padding: 14px 24px; border-radius: 999px; font-weight: 600; font-size: 14px; }
+  .contact-card .links a:hover { background: var(--coral); }
+  .contact-card img { width: 200px; height: 200px; border-radius: 24px; object-fit: cover; border: 3px solid var(--ink); transform: rotate(4deg); }
+
+  footer { padding: 40px 0 32px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .photo-wrap { margin: 0 auto; max-width: 280px; }
+    .contact-card { grid-template-columns: 1fr; text-align: center; }
+    .contact-card .text { text-align: center; }
+    .contact-card .links { justify-content: center; }
+    .contact-card img { margin: 0 auto; transform: rotate(0deg); }
+  }
+  @media (max-width: 800px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 2px solid var(--ink); }
+    .stat:nth-child(2n) { border-right: none; }
+    .projects, .skill-groups { grid-template-columns: 1fr; }
+    .sec-title { flex-wrap: wrap; }
+    .sec-title .desc { text-align: left; margin-left: 0; }
+    header nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">
+      <img src="assets/chloe-photo.png" alt="Chloe Chan" />
+      <div class="name">Chloe Chan<small>MSc Marketing · HKU</small></div>
+    </div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="tag">Available for internships &amp; projects · 2026</span>
+      <h1>
+        Hi, I'm <span class="highlight">Chloe</span>.<br>
+        I make marketing <span class="underline">measurable</span> &amp; stories scrollable.
+      </h1>
+      <p class="sub">MSc Marketing candidate at HKU, HKUST alumna. I've planned L'Oréal product launches, built HSBC dashboards, and run a 6,800-follower street-photography account — all in the last 24 months.</p>
+      <div class="pill-row">
+        <span>Digital Marketing</span>
+        <span>Consumer Insights</span>
+        <span>Brand Strategy</span>
+        <span>CRM &amp; Analytics</span>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-frame lime"></div>
+      <div class="photo-frame"></div>
+      <img src="assets/chloe-photo.png" alt="Portrait of Chloe Chan" />
+      <span class="sticker top">📍 HKG</span>
+      <span class="sticker bottom">Open to work</span>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>HKU MSc Marketing</span><span>HKUST Dean's List</span><span>L'Oréal Hong Kong</span><span>HSBC</span><span>Ogilvy</span><span>Tableau</span><span>GA4</span><span>Cantonese · English · Mandarin</span><span>HKU MSc Marketing</span><span>HKUST Dean's List</span><span>L'Oréal Hong Kong</span><span>HSBC</span><span>Ogilvy</span><span>Tableau</span><span>GA4</span><span>Cantonese · English · Mandarin</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num coral">1.2M</div><div class="label">Social impressions on a L'Oréal launch</div></div>
+    <div class="stat"><div class="num">+24%</div><div class="label">Engagement target exceeded</div></div>
+    <div class="stat"><div class="num lime">420</div><div class="label">Survey responses analysed (SPSS)</div></div>
+    <div class="stat"><div class="num">6,800+</div><div class="label">Organic followers, Hidden Hong Kong</div></div>
+  </div>
+
+  <section id="work">
+    <div class="sec-title">
+      <span class="num">01</span>
+      <h2>Where I've worked.</h2>
+      <p class="desc">From agency to brand to bank — and a coffee shop that taught me community.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-top"><h3>L'Oréal Hong Kong</h3><span class="date">Jun – Aug 2025</span></div>
+        <div class="role">Marketing Intern — Consumer Products Division</div>
+        <ul>
+          <li>Supported integrated campaigns across Instagram, YouTube, TikTok and retail channels; analysed weekly sales and media performance from 80+ retail locations.</li>
+          <li>Coordinated product seeding with 35 micro-influencers and tracked reach, engagement and earned content.</li>
+          <li>Helped deliver a launch that generated 1.2M social impressions and exceeded its engagement target by 24%.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>HSBC Hong Kong</h3><span class="date">Jun – Aug 2024</span></div>
+        <div class="role">Digital Marketing Intern — Wealth and Personal Banking</div>
+        <ul>
+          <li>Built weekly dashboards covering impressions, CTR, conversion rates and CPA for youth acquisition campaigns.</li>
+          <li>Supported A/B tests on email subject lines and landing-page CTAs; winning email lifted open rate +11% and CTR +7%.</li>
+          <li>Analysed 1,500+ survey responses and summarised customer pain points for the digital product team.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Ogilvy Hong Kong</h3><span class="date">Jun – Aug 2023</span></div>
+        <div class="role">Account Management Intern</div>
+        <ul>
+          <li>Prepared competitor reviews, audience profiles, creative briefs and post-campaign reports for consumer and hospitality clients.</li>
+          <li>Monitored online conversations and turned cultural trends into weekly social-listening summaries.</li>
+          <li>Presented a Gen Z content proposal; two formats made it into the final campaign plan.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Harbour &amp; Pine Coffee</h3><span class="date">Sep 2022 – May 2023</span></div>
+        <div class="role">Part-time Social Media and Community Assistant</div>
+        <ul>
+          <li>Planned bilingual Instagram and Xiaohongshu content, growing Instagram followers from 2,800 to 4,600 in eight months.</li>
+          <li>Launched a UGC campaign that attracted 170+ customer posts and ran two community events for 120+ participants.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-title">
+      <span class="num">02</span>
+      <h2>Things I've built.</h2>
+      <p class="desc">Side projects, class projects and personal obsessions.</p>
+    </div>
+    <div class="projects">
+      <div class="project coral">
+        <span class="year">2026</span>
+        <h3>HK Sustainable Fashion Consumer Study</h3>
+        <p>Team lead. 420 responses, factor &amp; cluster analysis in SPSS, four segments, three campaigns.</p>
+      </div>
+      <div class="project lime">
+        <span class="year">2023 – Present</span>
+        <h3>"Hidden Hong Kong" Street-photography Account</h3>
+        <p>6,800+ organic followers, 90+ short videos and photo stories — bilingual, neighbourhood-led.</p>
+      </div>
+      <div class="project indigo">
+        <span class="year">2025</span>
+        <h3>Gen Z Beauty Trends Dashboard</h3>
+        <p>Tableau dashboard from public engagement data + a sample three-month content strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="sec-title">
+      <span class="num">03</span>
+      <h2>Toolkit &amp; credentials.</h2>
+      <p class="desc">What I work with, and the proof points behind it.</p>
+    </div>
+
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4><span class="dot c"></span>Marketing &amp; Analytics</h4>
+        <ul>
+          <li>Campaign planning</li><li>CRM</li><li>GA4</li><li>Excel</li><li>Power BI</li><li>Tableau</li><li>SPSS</li><li>SQL</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4><span class="dot l"></span>Creative &amp; Research</h4>
+        <ul>
+          <li>Canva</li><li>Figma</li><li>Photoshop</li><li>Qualtrics</li><li>Social listening</li><li>Photography</li><li>Short-form video</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4><span class="dot i"></span>Languages</h4>
+        <ul>
+          <li>Cantonese · Native</li><li>English · Professional</li><li>Mandarin · Professional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="creds">
+      <h2>Certifications · Awards</h2>
+      <div class="row"><div class="label">Certifications</div><div class="value">Google Analytics Certification (2025) · Meta Certified Digital Marketing Associate (2025) · HubSpot Content Marketing (2024)</div></div>
+      <div class="row"><div class="label">Awards</div><div class="value">HKU MSc Entrance Scholarship (2025) · HKUST Marketing Case Competition, First Runner-up (2024) · HKUST Dean's List</div></div>
+      <div class="row"><div class="label">Interests</div><div class="value">Street photography · trail running · specialty coffee · sustainable fashion · travel journaling · independent bookstores</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <div class="text">
+        <h2>Let's make something people remember.</h2>
+        <p>Open to summer 2026 internships, freelance brand projects, and collaborations on Gen Z research or content campaigns.</p>
+        <div class="links">
+          <a href="mailto:chloe.chan.marketing@hku.com">Email me</a>
+          <a href="https://linkedin.com/in/chloe-chan-marketing-demo" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="tel:+85251234567">+852 5123 4567</a>
+        </div>
+      </div>
+      <img src="assets/chloe-photo.png" alt="Chloe Chan" />
+    </div>
+  </section>
+
+  <footer>© 2026 Chloe Chan · Built with care · Hong Kong SAR</footer>
+</div>
+</body>
+</html>
