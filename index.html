@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chloe Chan — Resume</title>
+<style>
+  :root {
+    --navy: #17324d;
+    --teal: #0c7a78;
+    --soft: #edf4f5;
+    --line: #d9dde0;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --serif: Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: white; color: var(--ink); font-family: 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 14px; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 56px; }
+  @media print { .page { padding: 24px 28px; } }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 36px;
+    align-items: center;
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+  }
+  .header .left h1 {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-size: 46px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .header .left .sub {
+    color: var(--teal);
+    font-size: 16px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  .header .left .contact {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 4px 28px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .left .contact div { white-space: nowrap; }
+
+  .header .photo-wrap {
+    background: var(--soft);
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 0 6px 18px rgba(23, 50, 77, 0.12);
+    position: relative;
+  }
+  .header .photo-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+  .header .photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .section { margin-bottom: 28px; }
+  .section h2 {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+
+  .profile {
+    background: var(--soft);
+    padding: 16px 20px;
+    border-left: 4px solid var(--teal);
+    border-radius: 2px;
+    color: var(--ink);
+  }
+
+  .item { margin-bottom: 16px; }
+  .item .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .item h3 { font-size: 16px; font-weight: 700; }
+  .item .when { color: var(--muted); font-size: 13px; font-style: italic; }
+  .item .role { color: var(--teal); font-size: 13px; font-weight: 600; margin: 2px 0 6px; }
+  .item ul { padding-left: 20px; margin-top: 4px; }
+  .item ul li { margin-bottom: 4px; }
+
+  .edu { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-bottom: 12px; }
+  .edu h3 { font-size: 16px; font-weight: 700; }
+  .edu .when { color: var(--muted); font-size: 13px; font-style: italic; }
+  .edu .meta { color: var(--teal); font-size: 13px; font-weight: 600; }
+  .edu ul { padding-left: 20px; margin-top: 4px; grid-column: 1 / -1; }
+
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skills .skill { padding: 12px 14px; background: var(--soft); border-radius: 4px; }
+  .skills .skill h4 { color: var(--teal); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .skills .skill p { font-size: 13px; white-space: pre-line; }
+
+  .creds { display: grid; grid-template-columns: 160px 1fr; gap: 12px 16px; font-size: 13px; }
+  .creds dt { color: var(--navy); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+  .creds dd { color: var(--ink); margin-bottom: 8px; }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 20px; }
+    .header { grid-template-columns: 1fr; text-align: left; }
+    .header .photo-wrap { justify-self: start; width: 140px; }
+    .skills { grid-template-columns: 1fr; }
+    .creds { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="left">
+      <h1>Chloe Chan</h1>
+      <div class="sub">MSc Marketing Candidate · Digital · Consumer Insights · Brand Strategy</div>
+      <div class="contact">
+        <div>Hong Kong SAR</div>
+        <div>+852 5123 4567</div>
+        <div><a href="mailto:chloe.chan.marketing@hku.com">chloe.chan.marketing@hku.com</a></div>
+        <div><a href="https://linkedin.com/in/chloe-chan-marketing-demo">linkedin.com/in/chloe-chan-marketing-demo</a></div>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <img class="photo" src="photo.png" alt="Chloe Chan" />
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Profile</h2>
+    <p class="profile">Marketing postgraduate with academic training from The University of Hong Kong and The Hong Kong University of Science and Technology. Experienced in digital campaigns, consumer research, social media and brand strategy across L'Oréal, HSBC and Ogilvy.</p>
+  </section>
+
+  <section class="section">
+    <h2>Education</h2>
+    <div class="edu">
+      <div><h3>The University of Hong Kong — HKU Business School</h3><div class="meta">Master of Science in Marketing</div></div>
+      <div class="when">Sep 2025 – Aug 2026 (Expected)</div>
+      <ul>
+        <li>Focus areas: Digital Marketing, Consumer Insights, Marketing Analytics, CRM and Brand Management.</li>
+        <li>Recipient of the HKU Business School MSc Entrance Scholarship.</li>
+        <li>Consulting project: segmented Gen Z customers for a sustainable fashion start-up and proposed a creator-led campaign projected to reduce acquisition cost by 18%.</li>
+      </ul>
+    </div>
+    <div class="edu">
+      <div><h3>The Hong Kong University of Science and Technology</h3><div class="meta">BBA in Management; Minor in Marketing · CGA 3.65/4.30</div></div>
+      <div class="when">Sep 2021 – Jun 2025</div>
+      <ul>
+        <li>CGA: 3.65/4.30; Dean's List in 2022–23 and 2023–24.</li>
+        <li>Final-year project: How Short-form Video Influences Purchase Intention among Gen Z Consumers in Hong Kong.</li>
+        <li>Semester exchange at Copenhagen Business School, Jan–May 2024; studied sustainable marketing and international branding.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Professional Experience</h2>
+
+    <div class="item">
+      <div class="head"><h3>L'Oréal Hong Kong</h3><span class="when">Jun – Aug 2025 · Hong Kong SAR</span></div>
+      <div class="role">Marketing Intern — Consumer Products Division</div>
+      <ul>
+        <li>Supported integrated campaigns across Instagram, YouTube, TikTok and retail channels; analysed weekly sales and media performance from 80+ retail locations.</li>
+        <li>Coordinated product seeding with 35 micro-influencers and tracked reach, engagement and earned content.</li>
+        <li>Helped deliver a launch that generated 1.2M social impressions and exceeded its engagement target by 24%.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>HSBC Hong Kong</h3><span class="when">Jun – Aug 2024 · Hong Kong SAR</span></div>
+      <div class="role">Digital Marketing Intern — Wealth and Personal Banking</div>
+      <ul>
+        <li>Built weekly dashboards covering impressions, CTR, conversion rates and CPA for youth acquisition campaigns.</li>
+        <li>Supported A/B tests on email subject lines and landing-page CTAs; winning email lifted open rate +11% and CTR +7%.</li>
+        <li>Analysed 1,500+ survey responses and summarised customer pain points for the digital product team.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Ogilvy Hong Kong</h3><span class="when">Jun – Aug 2023 · Hong Kong SAR</span></div>
+      <div class="role">Account Management Intern</div>
+      <ul>
+        <li>Prepared competitor reviews, audience profiles, creative briefs and post-campaign reports for consumer and hospitality clients.</li>
+        <li>Monitored online conversations and turned cultural trends into weekly social-listening summaries.</li>
+        <li>Presented a Gen Z content proposal; two formats made it into the final campaign plan.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="head"><h3>Harbour &amp; Pine Coffee</h3><span class="when">Sep 2022 – May 2023 · Hong Kong SAR</span></div>
+      <div class="role">Part-time Social Media and Community Assistant</div>
+      <ul>
+        <li>Planned bilingual Instagram and Xiaohongshu content, growing Instagram followers from 2,800 to 4,600 in eight months.</li>
+        <li>Launched a UGC campaign that attracted 170+ customer posts and ran two community events for 120+ participants.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Selected Projects</h2>
+    <div class="item">
+      <div class="head"><h3>HK Sustainable Fashion Consumer Study</h3><span class="when">2026</span></div>
+      <div class="role">Team Lead — HKU Marketing Analytics Project</div>
+      <ul>
+        <li>Designed a bilingual survey with 420 valid responses; ran factor, cluster and regression analysis in SPSS.</li>
+        <li>Identified four consumer segments and recommended differentiated messages, channels and offers.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>"Hidden Hong Kong" Content Campaign</h3><span class="when">2023 – Present</span></div>
+      <div class="role">Personal Creative Project</div>
+      <ul>
+        <li>Built a bilingual neighbourhood and street-photography account to 6,800+ organic followers; produced 90+ short videos and photo stories.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="head"><h3>Gen Z Beauty Trends Dashboard</h3><span class="when">2025</span></div>
+      <div class="role">Independent Analytics Project</div>
+      <ul>
+        <li>Cleaned publicly available social engagement data and built a Tableau dashboard comparing beauty topics, formats and engagement patterns.</li>
+        <li>Translated the analysis into a sample three-month content strategy focused on high-save tutorial formats.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Skills, Credentials &amp; Interests</h2>
+    <div class="skills">
+      <div class="skill">
+        <h4>Marketing &amp; Analytics</h4>
+        <p>Campaign planning · CRM
+GA4 · Excel · Power BI
+Tableau · SPSS · SQL</p>
+      </div>
+      <div class="skill">
+        <h4>Creative &amp; Research</h4>
+        <p>Canva · Figma · Photoshop
+Qualtrics · social listening
+Photography · short-form video</p>
+      </div>
+      <div class="skill">
+        <h4>Languages</h4>
+        <p>Cantonese — Native
+English — Professional
+Mandarin — Professional</p>
+      </div>
+    </div>
+
+    <dl class="creds" style="margin-top:18px">
+      <dt>Certifications</dt><dd>Google Analytics Certification (2025) · Meta Certified Digital Marketing Associate (2025) · HubSpot Content Marketing (2024)</dd>
+      <dt>Awards</dt><dd>HKU MSc Entrance Scholarship (2025) · HKUST Marketing Case Competition, First Runner-up (2024) · HKUST Dean's List</dd>
+      <dt>Interests</dt><dd>Street photography · trail running · specialty coffee · sustainable fashion · travel journaling · independent bookstores</dd>
+    </dl>
+  </section>
+
+  <footer>Chloe Chan · Hong Kong SAR</footer>
+</div>
+</body>
+</html>
